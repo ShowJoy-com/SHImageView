@@ -1,0 +1,41 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    compile 'com.android.support:support-v4:24.0.0'
+
+    compile 'com.facebook.fresco:fresco:0.12.0'
+    // 支持webP图片的静态图，需加入
+    compile ('com.facebook.fresco:webpsupport:0.12.0') {
+        exclude group: 'com.android.support', module: 'support-v4'
+    }
+    // 支持Gif图片，需加入
+    compile 'com.facebook.fresco:animated-gif:0.12.0'
+    // 支持webP图片的动态图，需加入
+    compile 'com.facebook.fresco:animated-webp:0.12.0'
+
+
+    compile 'com.squareup.okhttp3:okhttp:3.2.0'
+    compile "com.facebook.fresco:imagepipeline-okhttp3:0.12.0"
+
+}
+
+apply from: 'https://raw.githubusercontent.com/or0fun/android/master/bintrayupload.gradle'
