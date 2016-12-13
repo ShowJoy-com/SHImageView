@@ -1,6 +1,6 @@
-# SHImagView
+# SHImageView
 
-简便的图片库，封装了fresco,非常方便使用。
+Android 简便的图片库，封装了fresco,非常方便使用。
 
 ## gradle 依赖
 
