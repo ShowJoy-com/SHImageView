@@ -2,6 +2,9 @@
 
 Android 简便的图片库，封装了fresco,非常方便使用。
 
+## gradle 依赖
+
+    compile 'com.showjoy.android:image:1.0.1'
 
 【更新记录】
 
@@ -15,9 +18,7 @@ Android 简便的图片库，封装了fresco,非常方便使用。
    public int getImageRes()
    public String getImageUrl()
 
-## gradle 依赖
-
-    compile 'com.showjoy.android:image:1.0.0'
+【使用简介】
 
 ## 首先在application的onCreate里调用
 
