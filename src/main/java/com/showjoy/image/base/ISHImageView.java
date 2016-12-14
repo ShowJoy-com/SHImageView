@@ -37,6 +37,9 @@ public interface ISHImageView {
 
     String getCompressUrl(String url);
 
+    String getImageUrl();
+    int getImageRes();
+
     interface CompressCallback {
         String getCompressedUrl(String url, int width, int height, boolean png2jpg);
         String getCompressedUrl(String url, boolean png2jpg);

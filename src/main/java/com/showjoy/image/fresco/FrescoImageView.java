@@ -45,6 +45,9 @@ public class FrescoImageView extends com.facebook.drawee.view.SimpleDraweeView i
 
     static CompressCallback sCompressCallback;
 
+    String imageUrl;
+    int imageRes;
+
     public FrescoImageView(Context context, GenericDraweeHierarchy hierarchy) {
         super(context, hierarchy);
     }
@@ -88,6 +91,8 @@ public class FrescoImageView extends com.facebook.drawee.view.SimpleDraweeView i
         if (TextUtils.isEmpty(url)) {
             return;
         }
+
+
         ViewGroup.LayoutParams params = getLayoutParams();
         if (null != params) {
             int width = params.width;
@@ -97,12 +102,19 @@ public class FrescoImageView extends com.facebook.drawee.view.SimpleDraweeView i
                 return;
             }
         }
+
+        if (url.equals(imageUrl)) {
+            return;
+        }
+        imageUrl = url;
+
         Uri uri = Uri.parse(url);
         DraweeController controller = Fresco.newDraweeControllerBuilder()
                 .setUri(uri)
                 .setControllerListener(controllerListener)
                 .build();
         setController(controller);
+
     }
 
     @Override
@@ -116,6 +128,12 @@ public class FrescoImageView extends com.facebook.drawee.view.SimpleDraweeView i
         if (TextUtils.isEmpty(url)) {
             return;
         }
+
+        if (url.equals(imageUrl)) {
+            return;
+        }
+        imageUrl = url;
+
         Uri uri = Uri.parse(url);
         ImageRequest request = ImageRequestBuilder.newBuilderWithSource(uri)
                 .setResizeOptions(new ResizeOptions(width, height))
@@ -150,6 +168,7 @@ public class FrescoImageView extends com.facebook.drawee.view.SimpleDraweeView i
 
     @Override
     public void setImageRes(int resId) {
+        imageRes = resId;
         setImageUrl("res://" + getContext().getPackageName() +  "/" + resId);
     }
 
@@ -174,6 +193,16 @@ public class FrescoImageView extends com.facebook.drawee.view.SimpleDraweeView i
             return sCompressCallback.getCompressedUrl(url, png2jpg);
         }
         return url;
+    }
+
+    @Override
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    @Override
+    public int getImageRes() {
+        return imageRes;
     }
 
     public void setCompressPng2Jpg(boolean png2jpg) {

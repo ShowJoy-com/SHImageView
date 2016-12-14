@@ -2,6 +2,19 @@
 
 Android 简便的图片库，封装了fresco,非常方便使用。
 
+
+【更新记录】
+
+1. 2016.12.13    1.0.0   
+
+   第一个版本，已经过产品的多次迭代，首次开源。
+   
+2. 2016.12.14    1.0.1    
+
+   解决重复设置同个url闪烁的问题。提供获取已设置的url和res的接口
+   public int getImageRes()
+   public String getImageUrl()
+
 ## gradle 依赖
 
     compile 'com.showjoy.android:image:1.0.0'

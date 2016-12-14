@@ -90,4 +90,13 @@ public class SHImageView extends FrescoImageView {
         super.setWrapContentEnable(enable);
     }
 
+    @Override
+    public int getImageRes() {
+        return super.getImageRes();
+    }
+
+    @Override
+    public String getImageUrl() {
+        return super.getImageUrl();
+    }
 }
