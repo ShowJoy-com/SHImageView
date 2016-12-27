@@ -98,12 +98,15 @@ xml使用：
 
 ### 混淆配置
 
--keep class com.facebook.imagepipeline.gif.** { *; }
--keep class com.facebook.imagepipeline.webp.** { *; }
--keep @com.facebook.common.internal.DoNotStrip class *
--keepclassmembers class * {
-@com.facebook.common.internal.DoNotStrip *;
-}
--keepclassmembers class * {
-native <methods>;
-}
+    -keep class com.facebook.imagepipeline.gif.** { *; }
+    -keep class com.facebook.imagepipeline.webp.** { *; }
+    -keep @com.facebook.common.internal.DoNotStrip class *
+    -keepclassmembers class * {
+    @com.facebook.common.internal.DoNotStrip *;
+    }
+    -keepclassmembers class * {
+    native <methods>;
+    }
+
+麻烦接入方在这里登记一下， 谢谢
+https://github.com/ShowJoy-com/SHImageView/issues/1
