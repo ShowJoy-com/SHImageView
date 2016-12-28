@@ -15,6 +15,7 @@ import com.facebook.imagepipeline.request.ImageRequestBuilder;
 /**
  * Created by lufei on 4/1/16.
  */
+@Deprecated
 public class FrescoGifImageView extends FrescoImageView {
     public FrescoGifImageView(Context context) {
         super(context);

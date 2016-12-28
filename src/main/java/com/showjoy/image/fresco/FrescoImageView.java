@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.facebook.common.logging.FLog;
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.backends.pipeline.PipelineDraweeControllerBuilder;
 import com.facebook.drawee.controller.BaseControllerListener;
 import com.facebook.drawee.controller.ControllerListener;
 import com.facebook.drawee.generic.GenericDraweeHierarchy;
@@ -23,7 +24,6 @@ import com.facebook.imagepipeline.core.ImagePipeline;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.facebook.imagepipeline.image.ImageInfo;
 import com.facebook.imagepipeline.request.BasePostprocessor;
-import com.facebook.imagepipeline.request.ImageRequest;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.facebook.imagepipeline.request.Postprocessor;
 import com.showjoy.image.base.ISHImageLoadListener;
@@ -84,14 +84,14 @@ public class FrescoImageView extends com.facebook.drawee.view.SimpleDraweeView i
 
     @Override
     public void setImageUrl(String url, boolean compressed) {
-        if (compressed) {
-            url = getCompressUrl(url);
-        }
 
         if (TextUtils.isEmpty(url)) {
             return;
         }
 
+        if (compressed) {
+            url = getCompressUrl(url);
+        }
 
         ViewGroup.LayoutParams params = getLayoutParams();
         if (null != params) {
@@ -108,12 +108,7 @@ public class FrescoImageView extends com.facebook.drawee.view.SimpleDraweeView i
         }
         imageUrl = url;
 
-        Uri uri = Uri.parse(url);
-        DraweeController controller = Fresco.newDraweeControllerBuilder()
-                .setUri(uri)
-                .setControllerListener(controllerListener)
-                .build();
-        setController(controller);
+        setController(getDraweeController(url, 0, 0));
 
     }
 
@@ -134,17 +129,25 @@ public class FrescoImageView extends com.facebook.drawee.view.SimpleDraweeView i
         }
         imageUrl = url;
 
+        setController(getDraweeController(url, width, height));
+    }
+
+    private DraweeController getDraweeController(String url, int width, int height) {
+
         Uri uri = Uri.parse(url);
-        ImageRequest request = ImageRequestBuilder.newBuilderWithSource(uri)
-                .setResizeOptions(new ResizeOptions(width, height))
-                .setPostprocessor(postprocessor)
-                .build();
-        DraweeController controller = Fresco.newDraweeControllerBuilder()
-                .setImageRequest(request)
+        ImageRequestBuilder requestBuilder = ImageRequestBuilder.newBuilderWithSource(uri)
+                .setPostprocessor(postprocessor);
+        PipelineDraweeControllerBuilder builder = Fresco.newDraweeControllerBuilder();
+        if (width > 0 && height > 0) {
+            requestBuilder.setResizeOptions(new ResizeOptions(width, height));
+        }
+        if (url.endsWith(".gif")) {
+            builder.setAutoPlayAnimations(true);
+        }
+        return builder.setImageRequest(requestBuilder.build())
                 .setControllerListener(controllerListener)
-                .setOldController(getController())
-                .build();
-        setController(controller);
+                .setOldController(getController()).build();
+
     }
 
     @Override
@@ -185,6 +188,9 @@ public class FrescoImageView extends com.facebook.drawee.view.SimpleDraweeView i
 
     @Override
     public String getCompressUrl(String url) {
+        if (!TextUtils.isEmpty(url) && url.endsWith(".gif")) {
+            return url;
+        }
         if (null != sCompressCallback) {
             ViewGroup.LayoutParams params = getLayoutParams();
             if (null != params) {

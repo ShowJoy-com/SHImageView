@@ -9,6 +9,7 @@ import com.showjoy.image.fresco.FrescoGifImageView;
  * Gif图片
  * Created by lufei on 4/1/16.
  */
+@Deprecated
 public class SHGifImageView extends FrescoGifImageView {
     public SHGifImageView(Context context) {
         super(context);
