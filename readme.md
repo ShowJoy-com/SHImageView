@@ -4,7 +4,7 @@ Android 简便的图片库，封装了fresco,非常方便使用，支持本地�
 
 ## gradle 依赖
 
-    compile 'com.showjoy.android:image:1.0.1'
+    compile 'com.showjoy.android:image:1.0.2'
 
 【更新记录】
 
