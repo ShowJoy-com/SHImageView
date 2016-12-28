@@ -17,7 +17,13 @@ Android 简便的图片库，封装了fresco,非常方便使用，支持本地�
    解决重复设置同个url闪烁的问题。提供获取已设置的url和res的接口
    public int getImageRes()
    public String getImageUrl()
-
+   
+3. 2016.12.28    1.0.2
+ 
+   SHImageView 直接支持gif，自动播放
+   废弃SHGifImageView
+   
+    
 【使用简介】
 
 ## 首先在application的onCreate里调用
@@ -54,6 +60,8 @@ xml使用：
     imageView.setImageUrl("http://t.cn/R5JfqHu");
     //本地图片
     //imageView.setImageUrl("file://sdcard/sample/xxx.jpg");
+    //gif图片
+    //imageView.setImageUrl("file://sdcard/sample/xxx.gif");
         
     //在setImageUrl之前调用
     imageView.setWrapContentEnable(true);//支持自适应宽高
