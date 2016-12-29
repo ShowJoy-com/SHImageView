@@ -97,11 +97,6 @@ xml使用：
     
     //设置边框宽度
     void setBorderWidth(int width);
-    
-
-### SHGifImageView  动态图
-
-  包含SHImageView的接口, 使用方法一致
   
 
 ### 混淆配置
