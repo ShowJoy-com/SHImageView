@@ -1,6 +1,6 @@
 # SHImageView
 
-Android 简便的图片库，封装了fresco,非常方便使用，支持本地图片，网络图片，支持webp,支持圆形图。
+Android 简便的图片库，封装了fresco,非常方便使用，支持本地图片，网络图片，支持webp, gif,支持支持圆形图。
 
 ## gradle 依赖
 
@@ -97,11 +97,6 @@ xml使用：
     
     //设置边框宽度
     void setBorderWidth(int width);
-    
-
-### SHGifImageView  动态图
-
-  包含SHImageView的接口, 使用方法一致
   
 
 ### 混淆配置
