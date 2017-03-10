@@ -4,7 +4,7 @@ Android 简便的图片库，封装了fresco,非常方便使用，支持本地�
 
 ## gradle 依赖
 
-    compile 'com.showjoy.android:image:1.0.2'
+    compile 'com.showjoy.android:image:1.0.3'
 
 【更新记录】
 
@@ -22,8 +22,12 @@ Android 简便的图片库，封装了fresco,非常方便使用，支持本地�
  
    SHImageView 直接支持gif，自动播放
    废弃SHGifImageView
-   
-    
+
+4. 2017.3.10    1.0.3
+
+   支持动态配置圆角
+   支持无协议的url，自动加上http
+
 【使用简介】
 
 ## 首先在application的onCreate里调用
