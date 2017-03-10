@@ -40,6 +40,8 @@ public interface ISHImageView {
     String getImageUrl();
     int getImageRes();
 
+    void setBorderRadius(float[] borderRadius);
+
     interface CompressCallback {
         String getCompressedUrl(String url, int width, int height, boolean png2jpg);
         String getCompressedUrl(String url, boolean png2jpg);

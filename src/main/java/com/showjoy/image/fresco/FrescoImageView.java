@@ -17,6 +17,7 @@ import com.facebook.drawee.controller.BaseControllerListener;
 import com.facebook.drawee.controller.ControllerListener;
 import com.facebook.drawee.generic.GenericDraweeHierarchy;
 import com.facebook.drawee.generic.GenericDraweeHierarchyBuilder;
+import com.facebook.drawee.generic.RoundingParams;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.imagepipeline.backends.okhttp3.OkHttpImagePipelineConfigFactory;
 import com.facebook.imagepipeline.common.ResizeOptions;
@@ -89,6 +90,10 @@ public class FrescoImageView extends com.facebook.drawee.view.SimpleDraweeView i
             return;
         }
 
+        if (url.startsWith("//")) {
+            url = "http:" + url;
+        }
+
         if (compressed) {
             url = getCompressUrl(url);
         }
@@ -130,6 +135,14 @@ public class FrescoImageView extends com.facebook.drawee.view.SimpleDraweeView i
         imageUrl = url;
 
         setController(getDraweeController(url, width, height));
+    }
+
+    @Override
+    public void setBorderRadius(float[] borderRadius) {
+        if (getHierarchy() != null) {
+            RoundingParams roundingParams = RoundingParams.fromCornersRadius(borderRadius[0]);
+            getHierarchy().setRoundingParams(roundingParams);
+        }
     }
 
     private DraweeController getDraweeController(String url, int width, int height) {
